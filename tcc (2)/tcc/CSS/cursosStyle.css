@@ -1,0 +1,665 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#FDFBF8;
+    color:#555;
+}
+
+
+
+.headerSite{
+
+    background:#EAF7FC;
+
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+}
+
+.navbarPrincipal{
+
+    width:90%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+    height:85px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+
+
+.logoSite{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#6F5B47;
+}
+
+.logoSite span{
+
+    color:#7EC8E3;
+}
+
+
+
+.menuPrincipal{
+
+    list-style:none;
+
+    display:flex;
+
+    gap:35px;
+}
+
+.menuPrincipal a{
+
+    text-decoration:none;
+
+    color:#6F5B47;
+
+    font-weight:500;
+
+    transition:.3s;
+}
+
+.menuPrincipal a:hover{
+
+    color:#7EC8E3;
+}
+
+
+
+.botaoVoltar{
+
+    background:#7EC8E3;
+
+    color:white;
+
+    padding:12px 24px;
+
+    border-radius:30px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.botaoVoltar:hover{
+
+    background:#68B8D8;
+
+    transform:translateY(-2px);
+}
+
+
+
+.sloganSite{
+
+    text-align:center;
+
+    padding-bottom:15px;
+
+    color:#A68A64;
+
+    font-style:italic;
+}
+
+
+
+.introducaoCursos{
+
+    width:90%;
+
+    max-width:1000px;
+
+    margin:60px auto;
+
+    text-align:center;
+}
+
+
+
+.nivelUsuario{
+
+    display:inline-block;
+
+    background:#7EC8E3;
+
+    color:white;
+
+    padding:12px 35px;
+
+    border-radius:30px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    margin-bottom:30px;
+
+    box-shadow:0 5px 15px rgba(126,200,227,.25);
+}
+
+
+
+.introducaoCursos h1{
+
+    color:#6F5B47;
+
+    font-size:42px;
+
+    margin-bottom:20px;
+}
+
+.introducaoCursos p{
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    color:#777;
+}
+
+
+
+.containerModulos{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding-bottom:30px;
+}
+
+.tituloModulos{
+
+    text-align:center;
+
+    color:#6F5B47;
+
+    font-size:34px;
+
+    margin-bottom:40px;
+}
+
+
+
+.listaModulos{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+
+    align-items:start;
+}
+
+
+.cardModulo{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:30px;
+
+    min-height:240px;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    border-top:6px solid #7EC8E3;
+
+    transition:.4s ease;
+
+    position:relative;
+
+    overflow:visible;
+
+    z-index:1;
+}
+
+.cardModulo:hover{
+
+    transform:scale(1.05);
+
+    z-index:10;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.18);
+}
+
+
+
+.cardModulo h2{
+
+    color:#6F5B47;
+
+    margin-bottom:15px;
+}
+
+
+
+.nivelModulo{
+
+    color:#7EC8E3;
+
+    font-weight:600;
+
+    display:block;
+
+    margin-bottom:15px;
+}
+
+
+.resumoModulo{
+
+    color:#777;
+
+    line-height:1.6;
+}
+
+
+
+.conteudoModulo{
+
+    max-height:0;
+
+    opacity:0;
+
+    overflow:hidden;
+
+    transition:.5s ease;
+}
+
+.cardModulo:hover .conteudoModulo{
+
+    max-height:500px;
+
+    opacity:1;
+
+    margin-top:25px;
+}
+
+.conteudoModulo p{
+
+    line-height:1.7;
+
+    color:#666;
+}
+
+
+
+.botaoComecarModulo{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:13px 30px;
+
+    background:#7EC8E3;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    position:relative;
+
+    z-index:20;
+}
+
+.botaoComecarModulo:hover{
+
+    background:#5FB4D3;
+
+    transform:translateY(-2px);
+}
+
+
+footer{
+
+    margin-top:80px;
+
+    background:#F4EBDD;
+
+    padding:30px;
+
+    text-align:center;
+
+    color:#6F5B47;
+}
+
+
+
+.modalLogin{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(0,0,0,.45);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    backdrop-filter:blur(4px);
+
+    z-index:9999;
+}
+
+
+.conteudoLogin{
+
+    width:420px;
+
+    max-width:92%;
+
+    background:#FFFDFB;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    position:relative;
+
+    animation:abrirModal .35s ease;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.18);
+}
+
+
+.conteudoLogin h2{
+
+    color:#6F5B47;
+
+    text-align:center;
+
+    margin-bottom:10px;
+}
+
+
+.conteudoLogin p{
+
+    text-align:center;
+
+    color:#777;
+
+    margin-bottom:25px;
+}
+
+
+.conteudoLogin input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-bottom:18px;
+
+    border:1px solid #D7D7D7;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+
+.conteudoLogin input:focus{
+
+    border-color:#7EC8E3;
+
+    box-shadow:0 0 8px rgba(126,200,227,.3);
+}
+
+
+
+.botaoEntrarModal{
+
+    width:100%;
+
+    border:none;
+
+    padding:15px;
+
+    border-radius:30px;
+
+    background:#7EC8E3;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+
+.botaoEntrarModal:hover{
+
+    background:#68B8D8;
+}
+
+
+
+.rodapeModal{
+
+    margin-top:25px;
+
+    text-align:center;
+}
+
+
+.rodapeModal a{
+
+    text-decoration:none;
+
+    color:#7EC8E3;
+
+    font-weight:600;
+}
+
+
+
+.fechar{
+
+    position:absolute;
+
+    right:20px;
+
+    top:15px;
+
+    font-size:30px;
+
+    color:#888;
+
+    cursor:pointer;
+}
+
+
+.fechar:hover{
+
+    color:#6F5B47;
+}
+
+
+
+@keyframes abrirModal{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-30px) scale(.95);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+    }
+}
+
+
+
+@media(max-width:1000px){
+
+    .navbarPrincipal{
+
+        flex-wrap:wrap;
+
+        height:auto;
+
+        padding:20px 0;
+
+        gap:20px;
+
+        justify-content:center;
+    }
+
+    .logoSite{
+
+        width:100%;
+
+        text-align:center;
+    }
+
+    .menuPrincipal{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:20px;
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    .introducaoCursos h1{
+
+        font-size:34px;
+    }
+
+    .tituloModulos{
+
+        font-size:28px;
+    }
+
+    .menuPrincipal{
+
+        gap:15px;
+    }
+
+    .menuPrincipal a{
+
+        font-size:14px;
+    }
+
+    .botaoVoltar{
+
+        padding:10px 20px;
+
+        font-size:14px;
+    }
+
+}
+
+
+@media(max-width:500px){
+
+    .logoSite{
+
+        font-size:29px;
+    }
+
+    .menuPrincipal{
+
+        gap:12px;
+    }
+
+    .menuPrincipal a{
+
+        font-size:13px;
+    }
+
+    .introducaoCursos{
+
+        margin:40px auto;
+    }
+
+    .introducaoCursos h1{
+
+        font-size:29px;
+    }
+
+    .introducaoCursos p{
+
+        font-size:16px;
+    }
+
+    .nivelUsuario{
+
+        font-size:15px;
+
+        padding:10px 20px;
+    }
+
+    .cardModulo{
+
+        padding:25px;
+    }
+
+}
