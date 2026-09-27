@@ -225,12 +225,27 @@ if (!empty($_SESSION["foto_perfil"])) {
 
         <br>
 
-        <button type="button" onclick="abrirOpcoesFoto()" style=" margin-top:15px; border:none; background:#7EC8E3;
-        color:white; border-radius:50%; width:50px; height:50px; font-size:22px; cursor:pointer;">
+
+        <!-- Botão para trocar a foto de perfil. -->
+        <button type="button" 
+        onclick="abrirOpcoesFoto()" 
+        style="
+        margin-top:15px; 
+        border:none; 
+        background:#7EC8E3;
+        color:white; 
+        border-radius:50%; 
+        width:50px; 
+        height:50px; 
+        font-size:24px; 
+        cursor:pointer;
+        "
+        >
+        &#9998;
         </button>
 
         <div id="opcoesFoto" style=" display:none; margin-top:15px;">
-            <form action="../control/trocar_foto.php" method="POST" enctype="multipart/form-data">
+            <form action="../control/trocarFoto.php" method="POST" enctype="multipart/form-data">
 
                 <label for="novaFoto" style=" display:block; padding:12px 20px; background:#7EC8E3; color:white;
                 border-radius:10px;cursor:pointer; margin-bottom:10px;"> Trocar foto </label>
@@ -241,7 +256,7 @@ if (!empty($_SESSION["foto_perfil"])) {
 
             <?php if (!empty($_SESSION["foto_perfil"])): ?>
 
-                <form action="../control/excluir_foto.php" method="POST">
+                <form action="../control/excluirFoto.php" method="POST">
                     <button type="submit" style=" width:100%; padding:12px 20px; background:#d9534f; color:white; 
                     border:none; border-radius:10px; cursor:pointer;"> Excluir foto
                     </button>

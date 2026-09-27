@@ -21,7 +21,14 @@ if (!isset($_FILES["foto"]) || $_FILES["foto"]["error"] !== UPLOAD_ERR_OK) {
     die("Erro ao enviar a foto.");
 }
 
+
+// Limitando o tamanho da imagem
 $arquivo = $_FILES["foto"];
+
+if ($arquivo["size"] > 5 * 1024 * 1024) {
+    die("A imagem deve ter no máximo 5 MB.");
+}
+
 
 $tiposPermitidos = [
     "image/jpeg" => "jpg",
@@ -29,10 +36,12 @@ $tiposPermitidos = [
     "image/webp" => "webp"
 ];
 
+
+// Limitando o tipo de imagem.
 $tipo = mime_content_type($arquivo["tmp_name"]);
 
 if (!isset($tiposPermitidos[$tipo])) {
-    die("A imagem deve ter no máximo 5 MB.");
+    die("Formato de imagem não permitido.");
 }
 
 $extensao = $tiposPermitidos[$tipo];

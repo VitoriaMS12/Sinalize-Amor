@@ -2,6 +2,8 @@
 
 session_start();
 
+require_once "../model/conexao.php";
+
 $logado = isset($_SESSION["id_usuario"]);
 
 $nomeUsuario = "";
@@ -13,6 +15,13 @@ if($logado){
     $nomeUsuario = $_SESSION["nome"];
 
 }
+
+/* Buscar os cursos */
+$sqlCursos = "SELECT * FROM curso WHERE ativo = TRUE ORDER BY id_curso";
+$stmtCursos = $pdo->prepare($sqlCursos);
+$stmtCursos->execute();
+
+$cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -107,181 +116,78 @@ if($logado){
     <h2 class="tituloModulos"> Trilha de Aprendizado </h2>
 
     <div class="listaModulos">
+        <?php
+        
+        $sqlModulos = "
+        SELECT 
+        modulo.id_modulo,
+        modulo.titulo,
+        modulo.descricao,
+        modulo.ordem,
+        curso.titulo AS curso
+    FROM modulo
+    INNER JOIN curso 
+        ON modulo.id_curso = curso.id_curso
+    WHERE curso.ativo = TRUE
+    ORDER BY modulo.id_curso, modulo.ordem
+";
 
-        <div class="cardModulo">
-            <h2> 🤟 Básico 1 </h2>
-            <span class="nivelModulo"> Primeiros passos </span>
-            <p class="resumoModulo"> Aprenda os primeiros conceitos e sinais da Libras. </p>
+$stmtModulos = $pdo->prepare($sqlModulos);
+$stmtModulos->execute();
 
-            <div class="conteudoModulo">
+$modulos = $stmtModulos->fetchAll(PDO::FETCH_ASSOC);
 
-                <p> Conteúdo do módulo:
-                    <br>
+?>
 
-                    ° Alfabeto manual
-                    <br>
+<?php foreach($modulos as $modulo): ?>
 
-                    ° Números manuais
-                    <br>
+    <div class="cardModulo">
 
-                    ° Saudações
-                    <br>
+        <h2>
+            <?php echo htmlspecialchars($modulo["titulo"]); ?>
+        </h2>
 
-                    ° Apresentações
-                    <br>
+        <span class="nivelModulo">
+            <?php echo htmlspecialchars($modulo["curso"]); ?>
+        </span>
 
-                    ° Pronomes
-                    <br>
+        <p class="resumoModulo">
+            <?php echo htmlspecialchars($modulo["descricao"]); ?>
+        </p>
 
-                    ° Pessoas
-                    <br>
+        <div class="conteudoModulo">
 
-                    ° Cores
-                    <br>
+            <p>
+                Conteúdo do módulo será adicionado aqui.
+            </p>
 
-                    ° Tempo
-                    <br>
+            <?php if($logado): ?>
 
-                    ° Calendário
-                    <br>
+                <a 
+                    href="modulo.php?id=<?php echo $modulo["id_modulo"]; ?>" 
+                    class="botaoComecarModulo"
+                >
+                    Começar Módulo
+                </a>
 
-                    ° Perguntas
-                </p>
+            <?php else: ?>
 
-                <?php if($logado): ?>
-                    <a href="moduloa.php" class="botaoComecarModulo"> Começar Módulo </a>
-                <?php else: ?>
-                    <a href="#" onclick="abrirLogin(); return false;" class="botaoComecarModulo"> Começar Módulo </a>
-                <?php endif; ?>
-            </div>
+                <a 
+                    href="#" 
+                    onclick="abrirLogin(); return false;" 
+                    class="botaoComecarModulo"
+                >
+                    Começar Módulo
+                </a>
+
+            <?php endif; ?>
+
         </div>
 
-        <div class="cardModulo">
-            <h2> 🤟 Básico 2 </h2>
-            <span class="nivelModulo"> Construindo vocabulário </span>
-            <p class="resumoModulo"> Amplie seus conhecimentos com novos sinais. </p>
+    </div>
 
-            <div class="conteudoModulo">
-
-                <p> Conteúdo do módulo:
-                    <br>
-
-                    ° Estações do ano
-                    <br>
-
-                    ° Ações (verbos)
-                    <br>
-
-                    ° Negação
-                    <br>
-
-                    ° Adjetivos
-                    <br>
-
-                    ° Emoções
-                    <br>
-
-                    ° Alimentos
-                    <br>
-
-                    ° Lugares
-                    <br>
-
-                    ° Objetos 
-                </p>
-
-
-                <?php if($logado): ?>
-                    <a href="modulob.php" class="botaoComecarModulo"> Começar Módulo </a>
-                <?php else: ?>
-                    <a href="#" onclick="abrirLogin(); return false;" class="botaoComecarModulo"> Começar Módulo </a>
-                <?php endif; ?>
-            </div>
-        </div>
-
-
-        <div class="cardModulo">
-            <h2> 🤟 Básico 3 </h2>
-            <span class="nivelModulo"> Comunicação inicial </span>
-            <p class="resumoModulo"> Comece a formar frases e pequenos diálogos. </p>
-
-            <div class="conteudoModulo">
-                <p>
-                    Neste módulo você aprenderá estrutura das
-                    frases, expressões faciais e pequenas conversas
-                    em Libras.
-                </p>
-
-                <?php if($logado): ?>
-                    <a href="moduloc.php" class="botaoComecarModulo"> Começar Módulo </a>
-                <?php else: ?>
-                    <a href="#" onclick="abrirLogin(); return false;" class="botaoComecarModulo"> Começar Módulo </a>
-                <?php endif; ?>
-            </div>
-        </div>
-
-
-        <div class="cardModulo">
-            <h2>💙 Intermediário 1</h2>
-            <span class="nivelModulo"> Aprimorando comunicação </span>
-            <p class="resumoModulo"> Desenvolva mais confiança ao sinalizar. </p>
-
-            <div class="conteudoModulo">
-
-                <p>
-                    Você aprenderá novos sinais, classificadores,
-                    expressões e situações reais de comunicação.
-                </p>
-
-
-                <?php if($logado): ?>
-                    <a href="modulod.php" class="botaoComecarModulo"> Começar Módulo </a>
-                <?php else: ?>
-                    <a href="#" onclick="abrirLogin(); return false;" class="botaoComecarModulo"> Começar Módulo </a>
-                <?php endif; ?>
-            </div>
-        </div>
-
-
-        <div class="cardModulo">
-            <h2> 💙 Intermediário 2 </h2>
-            <span class="nivelModulo"> Fluência em desenvolvimento </span>
-            <p class="resumoModulo"> Melhore sua compreensão e interpretação. </p>
-
-
-            <div class="conteudoModulo">
-                <p>
-                    Neste módulo serão trabalhados diálogos maiores,
-                    interpretação visual e variações da Libras.
-                </p>
-
-                <?php if($logado): ?>
-                    <a href="moduloe.php" class="botaoComecarModulo"> Começar Módulo </a>
-                <?php else: ?>
-                    <a href="#" onclick="abrirLogin(); return false;" class="botaoComecarModulo"> Começar Módulo </a>
-                <?php endif; ?>
-            </div>
-        </div>
-
-
-        <div class="cardModulo">
-            <h2>💙 Intermediário 3 </h2>
-            <span class="nivelModulo"> Comunicação avançada</span>
-            <p class="resumoModulo"> Prepare-se para utilizar Libras em diferentes contextos. </p>
-
-            <div class="conteudoModulo">
-                <p>
-                    Você desenvolverá conversação, interpretação,
-                    vocabulário profissional e comunicação natural.
-                </p>
-
-                <?php if($logado): ?>
-                    <a href="modulof.php" class="botaoComecarModulo"> Começar Módulo</a>
-                <?php else: ?>
-                    <a href="#" onclick="abrirLogin(); return false;" class="botaoComecarModulo"> Começar Módulo </a>
-                <?php endif; ?>
-            </div>
-        </div>
+<?php endforeach; ?>
+        
 
     </div>
 
@@ -351,7 +257,5 @@ document.addEventListener("keydown", function(event){
 });
 
 </script>
-
 </body>
-
 </html>
